@@ -1,12 +1,23 @@
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, ImageProps } from "react-native";
 import { styles } from "./styles";
 import { Avatar } from "../avatar";
+import { TouchableOpacityProps } from "react-native-gesture-handler";
 
-export function Contact() {
+export type ContactProps = {
+  id: string;
+  name: string;
+  image?: ImageProps;
+};
+
+type Props = TouchableOpacityProps & {
+  contact: ContactProps;
+};
+
+export function Contact({ contact, ...rest }: Props) {
   return (
-    <TouchableOpacity>
-      <Avatar name="Claudio" image={require("@/assets/profile.jpeg")} />
-      <Text style={styles.name}>Claudio</Text>
+    <TouchableOpacity style={styles.container} {...rest}>
+      <Avatar name={contact.name} image={contact.image} />
+      <Text style={styles.name}>{contact.name}</Text>
     </TouchableOpacity>
   );
 }

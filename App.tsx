@@ -4,7 +4,10 @@ import {
   Ubuntu_500Medium,
   Ubuntu_400Regular,
 } from "@expo-google-fonts/ubuntu";
+
 import { StatusBar } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import { Home } from "./src/app/home";
 import { Loading } from "./src/components/loading";
 import React from "react";
@@ -21,13 +24,13 @@ export default function App() {
   }
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
       <Home />
-    </>
+    </GestureHandlerRootView>
   );
 }

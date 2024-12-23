@@ -1,4 +1,11 @@
-import { Image, ImageProps, View, Text } from "react-native";
+import {
+  Image,
+  ImageProps,
+  View,
+  Text,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
 import { styles } from "./styles";
 import { fontFamily } from "@/theme/font-family";
 
@@ -20,7 +27,7 @@ const variants = {
       fontSize: 24,
     },
     large: {
-      fontSize: 32,
+      fontSize: 52,
     },
   },
 };
@@ -29,15 +36,21 @@ type Props = {
   name: string;
   image?: ImageProps | null;
   variant?: "medium" | "large";
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
-export function Avatar({ name, image, variant = "medium" }: Props) {
+export function Avatar({
+  name,
+  image,
+  variant = "medium",
+  containerStyle,
+}: Props) {
   return (
-    <View>
+    <View style={containerStyle}>
       {image ? (
         <Image source={image} style={variants.image[variant]} />
       ) : (
-        <View style={styles.letter}>
+        <View style={[styles.letter, variants.image[variant]]}>
           <Text style={[styles.text, variants.text[variant]]}>
             {name[0].toUpperCase()}
           </Text>
